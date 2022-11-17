@@ -9,20 +9,22 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Customer {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	private Integer customerId;
 	
-	@Min(value=3 ,message = "first name should be greather than 3 character")
+	@Size(min = 3,max=15 ,message = "first name should be greather than 3 character")
 	private String firstName;
-	@Min(value=3,message="last name should be greather than 3 character")
+	@Size(min=3,max=15,message="last name should be greather than 3 character")
 	private String lastName;
 	@Email(message = "Enter valid email")
 	private String email;
