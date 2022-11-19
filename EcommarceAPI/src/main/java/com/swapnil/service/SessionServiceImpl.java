@@ -13,7 +13,7 @@ import com.swapnil.exception.LoginException;
 import com.swapnil.model.CurrentUserSession;
 import com.swapnil.model.Customer;
 import com.swapnil.repository.CustomerDAO;
-import com.swapnil.repository.LoginDAO;
+import com.swapnil.repository.SessionDAO;
 
 import net.bytebuddy.utility.RandomString;
 @Service
@@ -23,7 +23,7 @@ public class SessionServiceImpl implements SessionService{
 	private CustomerDAO cDao;
 	
 	@Autowired
-	private LoginDAO lDao;
+	private SessionDAO lDao;
 	
 	@Override
 	public CurrentUserSession loginUserCustomer(LoginDTO loginDTO) throws CustomerException,LoginException {
@@ -57,12 +57,12 @@ public class SessionServiceImpl implements SessionService{
 	@Override
 	public String logoutUserCustomer(String key) throws LoginException {
 		
-		List<CurrentUserSession> cUser=lDao.findByUuid(key);
+		CurrentUserSession cUser=lDao.findByUuid(key);
 		
 		if(cUser==null) {
 			throw new LoginException("key is wrong "+key);
 		}else {
-			lDao.delete(cUser.get(0));
+			lDao.delete(cUser);
 			return "LogOut";
 		}
 	}
