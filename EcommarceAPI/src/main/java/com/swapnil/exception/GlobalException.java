@@ -33,6 +33,14 @@ public class GlobalException {
 		return new ResponseEntity<MyError>(myerror, HttpStatus.BAD_REQUEST);
 		
 	}
+	@ExceptionHandler(AdminDTOException.class)
+	public ResponseEntity<MyError> getadminLoginException(AdminDTOException c,WebRequest req){
+		
+		MyError myerror=new MyError(c.getMessage(), LocalTime.now(), req.getDescription(false));
+		
+		return new ResponseEntity<MyError>(myerror, HttpStatus.BAD_REQUEST);
+		
+	}
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<MyError> manveException(MethodArgumentNotValidException c){
 		

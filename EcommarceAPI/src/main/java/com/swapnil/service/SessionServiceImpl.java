@@ -1,5 +1,6 @@
 package com.swapnil.service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -7,7 +8,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.swapil.dto.AdminDTO;
 import com.swapil.dto.LoginDTO;
+import com.swapnil.exception.AdminDTOException;
 import com.swapnil.exception.CustomerException;
 import com.swapnil.exception.LoginException;
 import com.swapnil.model.CurrentUserSession;
@@ -36,7 +39,6 @@ public class SessionServiceImpl implements SessionService{
 			if(cUser.isPresent()) {
 				throw new LoginException("Already login"+loginDTO.getMobileNumber());
 			}else {
-				
 				if(loginDTO.getPassword().equals(c.getPassword())) {
 					String key=RandomString.make(6);
 					CurrentUserSession cUserS=new CurrentUserSession(c.getCustomerId(), key, LocalDateTime.now());
@@ -65,6 +67,32 @@ public class SessionServiceImpl implements SessionService{
 			lDao.delete(cUser);
 			return "LogOut";
 		}
+	}
+	@Override
+	public CurrentUserSession loginUserAdmin(AdminDTO admin) throws AdminDTOException {
+		// TODO Auto-generated method stub
+			if(admin.getMobileNumber().equals("9960318010")) {
+				Optional<CurrentUserSession> aUser=lDao.findById(admin.getId());
+				if(aUser.isPresent()) {
+					throw new AdminDTOException("Already login");
+				}else {
+					if(admin.getPassword().equals("swapnil$4747")) {
+						if(admin.getId()==123456) {
+						String key=RandomString.make(6);
+						CurrentUserSession cUser=new CurrentUserSession(admin.getId(),key , LocalDateTime.now());
+							CurrentUserSession c=lDao.save(cUser);
+							return c;
+						}else {
+							throw new AdminDTOException("User id is wrong"+admin.getId());
+						}
+					}else {
+						throw new AdminDTOException("password is wrong");
+					}
+				}
+				
+			}else {
+				throw new AdminDTOException("Enter valid mobile number");
+			}
 	}
 
 }
