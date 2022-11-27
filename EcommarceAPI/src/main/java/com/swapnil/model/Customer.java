@@ -1,9 +1,15 @@
 package com.swapnil.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
@@ -33,5 +39,6 @@ public class Customer {
 	@Size(min=8,max=16,message="password length should be in between 8 to 16")
 	private String password;
 
-
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Address> addresses=new ArrayList<>();
 }

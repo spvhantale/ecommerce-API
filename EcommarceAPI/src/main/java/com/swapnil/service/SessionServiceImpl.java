@@ -78,7 +78,7 @@ public class SessionServiceImpl implements SessionService{
 				}else {
 					if(admin.getPassword().equals("swapnil$4747")) {
 						if(admin.getId()==123456) {
-						String key=RandomString.make(6);
+						String key=RandomString.make(7);
 						CurrentUserSession cUser=new CurrentUserSession(admin.getId(),key , LocalDateTime.now());
 							CurrentUserSession c=lDao.save(cUser);
 							return c;

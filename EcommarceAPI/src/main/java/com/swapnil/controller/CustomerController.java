@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.swapnil.exception.AddressException;
 import com.swapnil.exception.CustomerException;
 import com.swapnil.model.Customer;
 import com.swapnil.service.CustomerService;
@@ -21,7 +22,7 @@ public class CustomerController {
 	private CustomerService cService;
 	
 	@PostMapping("/customers")
-	public ResponseEntity<Customer> registerCustomer(@Valid @RequestBody Customer Customer) throws CustomerException{
+	public ResponseEntity<Customer> registerCustomer(@Valid @RequestBody Customer Customer) throws CustomerException, AddressException{
 		
 		Customer c=cService.registerCustomer(Customer);
 		

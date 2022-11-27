@@ -24,7 +24,54 @@ public class GlobalException {
 		return new ResponseEntity<MyError>(myerror, HttpStatus.BAD_REQUEST);
 		
 	}
-	
+	@ExceptionHandler(AddressException.class)
+	public ResponseEntity<MyError> getAddressException(AddressException c,WebRequest req){
+		
+		MyError myerror=new MyError(c.getMessage(), LocalTime.now(), req.getDescription(false));
+		
+		return new ResponseEntity<MyError>(myerror, HttpStatus.BAD_REQUEST);
+		
+	}
+	@ExceptionHandler(ProductException.class)
+	public ResponseEntity<MyError> getProductException(ProductException c,WebRequest req){
+		
+		MyError myerror=new MyError(c.getMessage(), LocalTime.now(), req.getDescription(false));
+		
+		return new ResponseEntity<MyError>(myerror, HttpStatus.BAD_REQUEST);
+		
+	}
+	@ExceptionHandler(CategoryException.class)
+	public ResponseEntity<MyError> getCategoryException(CategoryException c,WebRequest req){
+		
+		MyError myerror=new MyError(c.getMessage(), LocalTime.now(), req.getDescription(false));
+		
+		return new ResponseEntity<MyError>(myerror, HttpStatus.BAD_REQUEST);
+		
+	}
+	@ExceptionHandler(CartException.class)
+	public ResponseEntity<MyError> getCartException(CartException c,WebRequest req){
+		
+		MyError myerror=new MyError(c.getMessage(), LocalTime.now(), req.getDescription(false));
+		
+		return new ResponseEntity<MyError>(myerror, HttpStatus.BAD_REQUEST);
+		
+	}
+	@ExceptionHandler(OrderException.class)
+	public ResponseEntity<MyError> getOrderException(OrderException c,WebRequest req){
+		
+		MyError myerror=new MyError(c.getMessage(), LocalTime.now(), req.getDescription(false));
+		
+		return new ResponseEntity<MyError>(myerror, HttpStatus.BAD_REQUEST);
+		
+	}
+	@ExceptionHandler(FeedBackException.class)
+	public ResponseEntity<MyError> getFeedbackException(FeedBackException c,WebRequest req){
+		
+		MyError myerror=new MyError(c.getMessage(), LocalTime.now(), req.getDescription(false));
+		
+		return new ResponseEntity<MyError>(myerror, HttpStatus.BAD_REQUEST);
+		
+	}
 	@ExceptionHandler(LoginException.class)
 	public ResponseEntity<MyError> getLoginException(LoginException c,WebRequest req){
 		
