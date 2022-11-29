@@ -115,10 +115,18 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public Customer viewCustomer(Integer customerId, String key) throws CustomerException,LoginException {
 		
+		CurrentUserSession cUser=sDao.findByUuid(key);
+		if(cUser==null) {
+			throw new LoginException("Login First");
+		}else {
+			if(cUser.getUserId()==customerId) {
+				Optional<Customer> cust=cDao.findById(customerId);
+				return cust.get();
+			}else {
+				throw new CustomerException("You don't have permission login with same user");
+			}
 		
-		
-		
-		return null;
+		}
 	}
 
 }

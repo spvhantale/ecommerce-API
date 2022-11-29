@@ -20,6 +20,7 @@ public class ProductDTO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer Id;
+	private String url;
 	private Integer proId;
 	private String productName;
 	private Integer productPrice;

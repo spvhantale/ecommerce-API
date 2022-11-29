@@ -24,13 +24,14 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer proId;
-	@Min(value = 3 ,message = "Characters should be greater than 3 of produtName")
+	private String url;
+	@Size(min = 3 ,message = "Characters should be greater than 3 of produtName")
 	private String productName;
 	@Min(value=1,message="Price should be greater than 1")
 	private Integer productPrice;
-	@Min(value = 3 ,message = "Characters should be greater than 3 of brand")
+	@Size(min = 1 ,message = "Characters should be greater than 1 of brand")
 	private String brand;
-	
+	private Integer quantity;
 	private String color;
 	private String manufactorer;
 	@OneToOne(cascade = CascadeType.ALL)
